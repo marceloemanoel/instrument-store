@@ -3,9 +3,16 @@ apply plugin: "war"
 apply plugin: "eclipse-wtp"
 apply plugin: "application"
 
-
-sourceSets.main.output.classesDir = "${webAppDir}/WEB-INF/classes"
-sourceSets.main.output.resourcesDir = "${webAppDir}/WEB-INF/classes"
+sourceSets {
+    bootstrap {
+        java {
+            srcDir "src/bootstrap/java"
+        }
+        resources {
+            srcDir "src/bootstrap/resources"
+        }
+    }
+}
 
 archivesBaseName = "instrument-store"
 version = "0.2"
@@ -57,6 +64,10 @@ dependencies {
   compile "org.eclipse.jetty:jetty-webapp:7.6.0.v20120127"
   compile "org.mortbay.jetty:jsp-2.1-glassfish:2.1.v20100127"
   
+  bootstrapCompile "org.eclipse.jetty:jetty-servlet:7.6.0.v20120127"
+  bootstrapCompile "org.eclipse.jetty:jetty-webapp:7.6.0.v20120127"
+  bootstrapCompile "org.mortbay.jetty:jsp-2.1-glassfish:2.1.v20100127"
+  
   testCompile "org.mockito:mockito-all:1.9.0-rc1"
   testCompile "junit:junit:4.8.2"
 }
@@ -64,15 +75,15 @@ dependencies {
 task wrapper(type:Wrapper) {
   gradleVersion = '1.4'
 }
-
-compileJava {
+compileJava.dependsOn([compileBootstrapJava])
+tasks.withType(Compile) {
   options.debug = true
   options.debugOptions.debugLevel = "source,lines,vars"
   options.encoding = "UTF-8"
 }
 
-task stage(dependsOn: [assemble, jar]) {
-    project.configurations.compile.each { File f ->
+task stage(dependsOn: assemble) {
+    project.configurations.bootstrapCompile.each { File f ->
         copy {
             from f
             into "${buildDir}/dependencies"
