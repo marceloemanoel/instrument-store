@@ -2,7 +2,10 @@ package com.github.marceloemanoel.vraptor.jscontroller.sample;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import com.google.common.collect.Lists;
 
 import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
@@ -15,9 +18,9 @@ public class Products {
   
   public Products(){
     products = new HashMap<Integer, Product>();
-    products.put(0, new Product("desc1", 0D));
-    products.put(1, new Product("desc2", 1D));
-    products.put(2, new Product("desc3", 2D));
+    products.put(0, new Product(0, "name0", "desc0", 0D));
+    products.put(1, new Product(1, "name1", "desc1", 1D));
+    products.put(2, new Product(2, "name2", "desc2", 2D));
   }
   
   public Collection<Product> all() {
@@ -38,6 +41,10 @@ public class Products {
 
   public void remove(int id) {
     products.remove(id);
+  }
+
+  public List<Product> onSale() {
+      return Lists.newArrayList(all());
   }
   
 }
