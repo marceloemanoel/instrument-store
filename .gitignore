@@ -1,0 +1,11 @@
+velocity.log
+.classpath
+.project
+.settings/
+bin/
+build/
+target/
+src/main/webapp/WEB-INF/classes/
+.gradle/
+.class
+
