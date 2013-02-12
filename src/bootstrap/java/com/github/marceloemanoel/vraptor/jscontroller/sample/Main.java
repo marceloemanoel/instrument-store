@@ -1,5 +1,8 @@
 package com.github.marceloemanoel.vraptor.jscontroller.sample;
 
+import java.io.File;
+import java.io.FilenameFilter;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
@@ -11,9 +14,17 @@ public class Main {
             webPort = "8080";
         }
         
+        File warDir = new File("build/libs");
+        String[] warFiles = warDir.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(".war");
+            }
+        });
+        
         WebAppContext root = new WebAppContext();
         root.setContextPath("/");
-        root.setWar("build/libs/instrument-store-0.2.war");
+        root.setWar(new File(warDir, warFiles[0]).getPath());
         root.setParentLoaderPriority(true);
         
         Server server = new Server(Integer.valueOf(webPort));
