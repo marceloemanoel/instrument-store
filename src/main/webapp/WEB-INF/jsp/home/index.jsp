@@ -100,7 +100,7 @@
                     <c:forEach items="${onSale}" var="promotion" varStatus="it">
                         <div class="item <c:if test='${it.first}'>active</c:if>">
                             <img alt="${promotion.product.description}" src="<c:url value='/img/${promotion.image}'/>">
-                            <div class="carrousel-caption">
+                            <div class="carousel-caption">
                                 <h4>${promotion.product.name}</h4>
                                 <p>${promotion.product.description}</p>
                             </div>                        
