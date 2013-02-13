@@ -3,7 +3,7 @@ package com.github.marceloemanoel.vraptor.jscontroller.sample.web;
 import static br.com.caelum.vraptor.view.Results.*;
 
 import com.github.marceloemanoel.vraptor.jscontroller.sample.Product;
-import com.github.marceloemanoel.vraptor.jscontroller.sample.Products;
+import com.github.marceloemanoel.vraptor.jscontroller.sample.repository.Products;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
