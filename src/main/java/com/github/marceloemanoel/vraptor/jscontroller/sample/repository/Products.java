@@ -1,10 +1,11 @@
-package com.github.marceloemanoel.vraptor.jscontroller.sample;
+package com.github.marceloemanoel.vraptor.jscontroller.sample.repository;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.marceloemanoel.vraptor.jscontroller.sample.Product;
 import com.google.common.collect.Lists;
 
 import br.com.caelum.vraptor.ioc.ApplicationScoped;
@@ -18,9 +19,9 @@ public class Products {
   
   public Products(){
     products = new HashMap<Integer, Product>();
-    products.put(0, new Product(0, "name0", "desc0", 0D));
-    products.put(1, new Product(1, "name1", "desc1", 1D));
-    products.put(2, new Product(2, "name2", "desc2", 2D));
+    products.put(0, new Product(0, "Fall Limiteds", "Three fresh wood pairings spice up the season", 4298D));
+    products.put(1, new Product(1, "300 Series", "The 316ce brings a new GS voice to the line", 1699D));
+    products.put(2, new Product(2, "Nylon-Strings: Hybrid Style", "Modern styling meets signature Taylor playability 800 nylon", 23.95D));
   }
   
   public Collection<Product> all() {
